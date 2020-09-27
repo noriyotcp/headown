@@ -19,6 +19,18 @@ RSpec.describe Headown::CLI do
         expect(headown.send(:extract_headers, file_data)).to eq ["# h1", "## h2", "### h3", "#### h4", "##### h5", "###### h6"]
       end
     end
+
+    # cf. https://spec.commonmark.org/0.29/#atx-headings
+    describe 'interrupting paragraphs' do
+      context 'when ATX headings are not separated from surrounding content by blank lines' do
+        it 'extracts headers' do
+          file_data = URI.open('spec/headown/sample2.md') do |f|
+            f.read
+          end
+          expect(headown.send(:extract_headers, file_data)).to eq ['# baz']
+        end
+      end
+    end
   end
 
   describe '#extract' do
