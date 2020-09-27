@@ -10,6 +10,15 @@ RSpec.describe Headown::CLI do
         expect(headown.send(:extract_headers, file_data)).to eq ["# h1", "## h2", "### h3", "#### h4", "##### h5", "###### h6"]
       end
     end
+
+    context 'when it finds a markdown file online' do
+      it 'extracts headers' do
+        file_data = URI.open('https://raw.githubusercontent.com/noriyotcp/headown/main/spec/headown/sample.md') do |f|
+          f.read
+        end
+        expect(headown.send(:extract_headers, file_data)).to eq ["# h1", "## h2", "### h3", "#### h4", "##### h5", "###### h6"]
+      end
+    end
   end
 
   describe '#extract' do
