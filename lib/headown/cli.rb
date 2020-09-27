@@ -7,8 +7,10 @@ module Headown
     desc 'extract <path>', 'extract headers from file path'
 
     def extract(file_path)
-      file_data = URI.open(file_path).read
-      extract_headers(file_data)
+      file_data = URI.open(file_path) do |f|
+        f.read
+      end
+      puts_headers(file_data)
     end
 
     private
@@ -38,6 +40,10 @@ module Headown
       header_nodes(file_data).map do |node|
         build_header(node)
       end
+    end
+
+    def puts_headers(file_data)
+      puts extract_headers(file_data)
     end
   end
 end
