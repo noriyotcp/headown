@@ -7,9 +7,7 @@ module Headown
     desc 'extract <path>', 'extract headers from file path'
 
     def extract(file_path)
-      file_data = URI.open(file_path) do |f|
-        f.read
-      end
+      file_data = URI.open(file_path, &:read)
       puts_headers(file_data)
     end
 
@@ -17,29 +15,17 @@ module Headown
 
     def header_nodes(data)
       doc = CommonMarker.render_doc(data)
-      [].tap do |nodes|
-        doc.walk do |node|
-          if node.type == :header
-            nodes << node
-          end
-        end
-      end
+      [].tap { |nodes| doc.walk { |node| nodes << node if node.type == :header } }
     end
 
     def build_header(node)
       text = ''
-      node.each do |subnode|
-        if subnode.type == :text
-          text = subnode.string_content
-        end
-      end
+      node.each { |subnode| text = subnode.string_content if subnode.type == :text }
       '#' * node.header_level + " #{text}"
     end
 
     def extract_headers(file_data)
-      header_nodes(file_data).map do |node|
-        build_header(node)
-      end
+      header_nodes(file_data).map { |node| build_header(node) }
     end
 
     def puts_headers(file_data)
