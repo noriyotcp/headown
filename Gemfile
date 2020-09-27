@@ -7,3 +7,7 @@ gem "rake", "~> 12.0"
 gem "rspec", "~> 3.0"
 gem 'commonmarker'
 gem 'thor'
+
+group :development do
+  gem 'prettier'
+end
