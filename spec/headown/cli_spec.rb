@@ -48,4 +48,16 @@ RSpec.describe Headown::CLI do
       end
     end
   end
+
+  describe 'Headown::NotMarkdownError' do
+    let(:file_path) { 'spec/headown/non-md.html' }
+    context "#{file_path} is passed" do
+      it do
+        expect { raise Headown::NotMarkdownError.new(file_path: file_path) }.to raise_error(
+          Headown::NotMarkdownError,
+          "#{file_path} is not a Markdown file."
+        )
+      end
+    end
+  end
 end

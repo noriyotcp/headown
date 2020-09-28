@@ -7,8 +7,15 @@ module Headown
     desc 'extract <path>', 'extract headers from file path'
 
     def extract(file_path)
+      raise Headown::NotMarkdownError.new(file_path: file_path) if File.extname(file_path) != '.md'
+
       file_data = URI.open(file_path, &:read)
       puts_headers(file_data)
+    rescue Headown::NotMarkdownError => e
+      puts <<~MSG
+      #{e.class}:
+        #{e.message}
+      MSG
     end
 
     private
