@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'headown'
+require 'headown/cli'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

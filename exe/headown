@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-require "headown"
+require 'headown'
+require 'headown/cli'
 
 Headown::CLI.start(ARGV)
