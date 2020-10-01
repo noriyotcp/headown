@@ -1,5 +1,4 @@
 require 'headown/version'
-require 'headown/cli'
 
 module Headown
   class NotMarkdownError < StandardError
