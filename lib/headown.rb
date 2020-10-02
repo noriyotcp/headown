@@ -14,6 +14,8 @@ module Headown
     attr_reader :headers
 
     def initialize(file_path)
+      raise Headown::NotMarkdownError.new(file_path: file_path) if File.extname(file_path) != '.md'
+
       file_data = URI.open(file_path, &:read)
       extract_headers(file_data)
     end
