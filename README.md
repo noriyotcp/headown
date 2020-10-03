@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-From this following file
+From this following file:
 
 ```markdown
 # h1
@@ -49,7 +49,7 @@ This is h6.
 
 ```
 
-Extracts headers only
+Extracts headers only:
 
 ```shell script
 $ headown extract ./spec/headown/sample.md
@@ -61,7 +61,7 @@ $ headown extract ./spec/headown/sample.md
 ###### h6
 ```
 
-From online
+From online:
 
 ```shell script
 $ headown extract https://raw.githubusercontent.com/noriyotcp/headown/main/spec/headown/sample.md
@@ -73,7 +73,7 @@ $ headown extract https://raw.githubusercontent.com/noriyotcp/headown/main/spec/
 ###### h6
 ```
 
-ATX headings can interrupt paragraphs
+ATX headings can interrupt paragraphs:
 
 ```markdown
 ****
@@ -85,12 +85,23 @@ ATX headings can interrupt paragraphs
 <hr />
 ```
 
-So, it extracts headers
+So, it extracts headers:
 
 ```shell script
 $ headown extract ./spec/headown/sample2.md
 # baz
 ```
+
+You can also use it in a Ruby file:
+
+```ruby
+require 'headown'
+#=> true
+extractor = Headown::Extractor.new('spec/headown/sample.md')
+extractor.headers
+#=> ["# h1", "## h2", "### h3", "#### h4", "##### h5", "###### h6"]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
