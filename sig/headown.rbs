@@ -1,5 +1,10 @@
 # TypeProf 0.21.2
 
+# polyfill for thor
+class Thor
+  def self.desc: (String, String, ?Hash[Symbol, String]) -> void
+end
+
 # Classes
 module Headown
   VERSION: String
