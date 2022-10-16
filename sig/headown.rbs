@@ -36,9 +36,9 @@ module Headown
     def initialize: (untyped file_path) -> void
 
     private
-    def extract_headers: (IO? file_data) -> Array[String]
-    def header_nodes: (IO? data) -> Array[untyped]
-    def build_header: (Array[untyped] node) -> String
+    def extract_headers: (IO file_data) -> Array[String]
+    def header_nodes: (IO data) -> Array[CommonMarker::Node]
+    def build_header: (CommonMarker::Node node) -> String
   end
 
   class CLI < Thor
