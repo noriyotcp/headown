@@ -1,0 +1,24 @@
+# TypeProf 0.21.2
+
+# Classes
+module Headown
+  VERSION: String
+
+  class NotMarkdownError < StandardError
+    def initialize: (file_path: untyped) -> void
+  end
+
+  class Extractor
+    attr_reader headers: Array[String]
+    def initialize: (untyped file_path) -> void
+
+    private
+    def extract_headers: (IO? file_data) -> Array[String]
+    def header_nodes: (IO? data) -> Array[untyped]
+    def build_header: (bot node) -> String
+  end
+
+  class CLI < Thor
+    def extract: (untyped file_path) -> nil
+  end
+end
