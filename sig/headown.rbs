@@ -25,7 +25,7 @@ module Headown
     private
     def extract_headers: (IO? file_data) -> Array[String]
     def header_nodes: (IO? data) -> Array[untyped]
-    def build_header: (bot node) -> String
+    def build_header: (Array[untyped] node) -> String
   end
 
   class CLI < Thor
