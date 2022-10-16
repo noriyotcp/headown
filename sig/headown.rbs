@@ -5,6 +5,11 @@ class Thor
   def self.desc: (String, String, ?Hash[Symbol, String]) -> void
 end
 
+# polyfill for URI
+class URI
+  def self.open: (String) { (IO) -> (::String | nil) } -> IO
+end
+
 # Classes
 module Headown
   VERSION: String
