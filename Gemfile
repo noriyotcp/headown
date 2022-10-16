@@ -11,3 +11,7 @@ gem 'thor'
 group :development do
   gem 'prettier'
 end
+
+group :development, :test do
+  gem 'steep'
+end
