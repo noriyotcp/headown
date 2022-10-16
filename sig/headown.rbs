@@ -10,6 +10,19 @@ class URI
   def self.open: (String) { (IO) -> (::String | nil) } -> IO
 end
 
+# polyfill for commonmarker
+module CommonMarker
+  def self.render_doc: (::IO | nil) -> CommonMarker::Node
+
+  class Node
+    def each: [U] { (Node) -> U } -> ::Array[U]
+    def walk: [U] { (Node) -> U } -> ::Array[U]
+    attr_reader type: Symbol
+    attr_reader string_content: String
+    attr_reader header_level: Integer
+  end
+end
+
 # Classes
 module Headown
   VERSION: String
