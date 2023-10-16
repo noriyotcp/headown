@@ -12,7 +12,7 @@ end
 
 # polyfill for commonmarker
 module CommonMarker
-  def self.render_doc: (::IO | nil) -> CommonMarker::Node
+  def self.render_doc: (::IO) -> CommonMarker::Node
 
   class Node
     def each: [U] { (Node) -> U } -> ::Array[U]
